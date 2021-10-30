@@ -2,7 +2,7 @@ import Header from "../components/Header";
 import Head from "next/head";
 export default function Home() {
   return (
-    <div className="bg-white md:max-w-6xl    md:mt-20  md:ml-40">
+    <div className="bg-white md:max-w-6xl    md:mt-20  md:ml-30">
       <Head>
         <title>Ahmed Djaalab</title>
       </Head>
