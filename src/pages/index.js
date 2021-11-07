@@ -12,7 +12,7 @@ export default function Home({ user }) {
       {/* header */}
       <Header user={user} />
 
-      <div className="max-w-[550px] mx-auto mt-20">
+      <div className="max-w-[550px] mx-auto mt-20  md:ml-[200px] ">
         <p className="text-2xl">
           <span className="text-5xl font-bold dark:text-white">
             Hi, I'm {user.name?.split(" ")[0]}.

@@ -6,6 +6,7 @@ import axios from "axios";
 import { LightBulbIcon } from "@heroicons/react/outline";
 import { useLightDarkThemeContext } from "../context/lightDarkThemeContext";
 import { useTheme } from "next-themes";
+import NextLink from "next/link";
 function Header({ user, isActive = null }) {
   const { theme, setTheme } = useTheme();
 
@@ -15,23 +16,30 @@ function Header({ user, isActive = null }) {
       {/* left  */}
       {/* md:mt-20  md:ml-40  mx-2 my-2 */}
       <div className="md:flex  md:mt-20 justify-between md:ml-40  mx-2 my-2">
-        <img className="relative w-32 h-32 rounded-full" src={user.avatar} />
+        <NextLink href="/">
+          <img
+            className="relative w-32 h-32 rounded-full cursor-pointer"
+            src={user.avatar}
+          />
+        </NextLink>
 
         <div className="flex flex-col md:mx-5 md:my-3 justify-between ">
           {/* right the name  */}
-          <div>
-            <h2
-              className="font-bold
+
+          <NextLink href="/">
+            <div className="cursor-pointer">
+              <h2
+                className="font-bold
      text-xl uppercase
       dark:text-white
        mt-4
        md:mt-0
        "
-            >
-              {user.name}
-            </h2>
-            <div
-              className="h-2
+              >
+                {user.name}
+              </h2>
+              <div
+                className="h-2
      w-10
       bg-purple-500
        rounded-full
@@ -39,8 +47,9 @@ function Header({ user, isActive = null }) {
         md:mt-2
         
         "
-            />
-          </div>
+              />
+            </div>
+          </NextLink>
           {/* the navBar */}
           <NavBar isActive={isActive} />
         </div>
@@ -48,7 +57,7 @@ function Header({ user, isActive = null }) {
       <LightBulbIcon
         className={`mt-20 mr-20 h-10
            ${
-             theme === "light"
+             !dark
                ? "text-yellow-500 hover:text-black transition delay-200 ease-out"
                : "text-white hover:text-yellow-500 transition delay-200 ease-out"
            }
