@@ -2,7 +2,7 @@ const withFonts = require("next-fonts");
 
 module.exports = {
   images: {
-    domains: ["cdn.fakercloud.com", "lorempixel.com"],
+    domains: ["cdn.fakercloud.com", "lorempixel.com", "dash.djaalabahmed.com"],
   },
 };
 // module.exports = withFonts({

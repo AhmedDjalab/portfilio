@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useStackFilterContext } from "../context/stackFilterContext";
+import { ArrowsExpandIcon } from "@heroicons/react/outline";
 
 function StackTile({ stack, filter = false }) {
   const [checked, setChecked] = useState([...Array(stack.length).fill(0)]);
@@ -10,7 +11,7 @@ function StackTile({ stack, filter = false }) {
         {stack.map((st, index) => (
           <div
             key={index}
-            className="mt-10 lg:mt-2 flex
+            className="mt-10 lg:mt-2 flex 
                    "
           >
             <button

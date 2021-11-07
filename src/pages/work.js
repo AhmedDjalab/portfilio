@@ -10,7 +10,16 @@ function worker({ user, workers }) {
       <Header isActive="Work" user={user} />
       <div className=" mt-20 lg:max-w-6xl mx-auto md:ml-40 h-screen">
         {workers.map(
-          ({ id, title, description, mainImage, brief, result, stack }) => (
+          ({
+            id,
+            title,
+            description,
+            mainImage,
+            brief,
+            result,
+            stack,
+            link,
+          }) => (
             <ProjectTile
               key={id}
               id={id}
@@ -18,6 +27,7 @@ function worker({ user, workers }) {
               title={title}
               description={description}
               stack={stack}
+              link={link}
             />
           )
         )}
@@ -44,6 +54,7 @@ export async function getServerSideProps(context) {
     stack: product.acf.stack,
     brief: product.acf.brief,
     result: product.acf.result,
+    link: product.link,
   }));
   return {
     props: {

@@ -1,5 +1,11 @@
+import { ArrowsExpandIcon } from "@heroicons/react/outline";
+import { ViewListIcon } from "@heroicons/react/outline";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { CSSTransition } from "react-transition-group";
 import Header from "../components/Header";
+import ProjectCard from "../components/ProjectCard";
 import ProjectTile from "../components/ProjectTile";
 import StackTile from "../components/StackTile";
 import { porjectsData, StackData } from "../consts/data";
@@ -8,6 +14,8 @@ import { getUserData } from "../utils/getUserData";
 
 function projects({ projects, user, stack }) {
   const { stackIds, setStackIds } = useStackFilterContext();
+  const [inProp, setInProp] = useState(false);
+
   console.log("this is cntext ", stackIds);
   return (
     <div className="bg-white dark:bg-black dark:duration-300 dark:transition  h-full">
@@ -25,48 +33,84 @@ function projects({ projects, user, stack }) {
           {/* filter by stack  */}
 
           <div>
-            <h2 className="text-3xl font-bold mt-10 dark:text-white">
-              Technologies
-            </h2>
+            <div className="flex content-end mt-10">
+              <h2 className=" flex-grow text-3xl font-bold  dark:text-white">
+                Technologies
+              </h2>
+
+              {inProp ? (
+                <ArrowsExpandIcon
+                  className="w-5 h-5"
+                  onClick={() => setInProp(!inProp)}
+                />
+              ) : (
+                <ViewListIcon
+                  className="w-5 h-5"
+                  onClick={() => setInProp(!inProp)}
+                />
+              )}
+            </div>
+
             <StackTile stack={stack} filter={true} />
           </div>
         </div>
         {
-          <div className="h-screen">
-            {projects
-              .filter((project) => {
-                if (stackIds.length > 0) {
-                  console.log(
-                    "this is stakc data ",
-                    project.stackIds.includes(stackIds),
-                    project.stackIds.some((r) => stackIds.includes(r))
-                  );
-                  return project.stackIds.some((r) => stackIds.includes(r));
-                } else {
-                  return true;
-                }
-              })
-              .map(
-                ({
-                  id,
-                  title,
-                  description,
-                  mainImage,
-                  brief,
-                  result,
-                  stack,
-                }) => (
-                  <ProjectTile
-                    key={id}
-                    id={id}
-                    mainImage={mainImage}
-                    title={title}
-                    description={description}
-                    stack={stack}
-                  />
-                )
-              )}
-          </div>
+          <motion.div
+            key={inProp ? inProp : "empty"}
+            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+          >
+            <div className="h-full flex flex-wrap  ">
+              {projects
+                .filter((project) => {
+                  if (stackIds.length > 0) {
+                    console.log(
+                      "this is stakc data ",
+                      project.stackIds.includes(stackIds),
+                      project.stackIds.some((r) => stackIds.includes(r))
+                    );
+                    return project.stackIds.some((r) => stackIds.includes(r));
+                  } else {
+                    return true;
+                  }
+                })
+                .map(
+                  ({
+                    id,
+                    title,
+                    description,
+                    mainImage,
+                    brief,
+                    result,
+                    link,
+                    stack,
+                  }) =>
+                    inProp ? (
+                      <ProjectTile
+                        key={id}
+                        id={id}
+                        mainImage={mainImage}
+                        title={title}
+                        description={description}
+                        stack={stack}
+                        link={link}
+                      />
+                    ) : (
+                      <ProjectCard
+                        key={id}
+                        id={id}
+                        mainImage={mainImage}
+                        title={title}
+                        description={description}
+                        stack={stack}
+                        link={link}
+                      />
+                    )
+                )}
+            </div>
+          </motion.div>
         }
       </div>
     </div>
@@ -94,6 +138,7 @@ export async function getServerSideProps(context) {
     stackIds: product.stack,
     brief: product.acf.brief,
     result: product.acf.result,
+    link: product.link,
   }));
   console.log("ths is projects :: ", projects);
 
