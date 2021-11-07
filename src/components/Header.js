@@ -46,7 +46,7 @@ function Header({ user, isActive = null }) {
         </div>
       </div>
       <LightBulbIcon
-        className={`text-white mt-20 mr-20 h-10
+        className={`mt-20 mr-20 h-10
            ${
              theme === "light"
                ? "text-yellow-500 hover:text-black transition delay-200 ease-out"
