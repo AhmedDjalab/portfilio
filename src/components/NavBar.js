@@ -32,7 +32,9 @@ function NavBar({ isActive = false }) {
           key={`${title + path}`}
           className={`font-bold 
           text-lg  ${
-            isActive && isActive === title ? "text-purple-500" : "text-gray-600"
+            isActive && isActive === title
+              ? "text-purple-500"
+              : "text-gray-600 dark:text-white"
           }
            mr-10 mt-10 uppercase 
            md:mt-0 hover:text-purple-600

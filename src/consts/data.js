@@ -1,3 +1,14 @@
+
+export const mainProfile= {
+  name : "ahmed Djalab" , 
+  avatar : "" , 
+  title:"software dev " , 
+  howAmI : " "
+}
+
+
+
+
 export const porjectsData = [
   {
     id: 1,
@@ -81,3 +92,14 @@ export const StackData = [
     name: "Asp net Core ",
   },
 ];
+
+
+///plus the contact us for witch i will send you the post request with body 
+// of :
+//    body = {
+//   email : "" , 
+//   name:"" , 
+//   subject : ""
+//   message : ""
+// }
+

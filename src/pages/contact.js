@@ -4,6 +4,8 @@ import { useState } from "react";
 import { InputOrTextArea } from "../components/InputOrTextArea";
 
 import * as Yup from "yup";
+import axios from "axios";
+import { getUserData } from "../utils/getUserData";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
@@ -20,14 +22,14 @@ const ContactSchema = Yup.object().shape({
     .required("Required"),
   email: Yup.string().email("Invalid email").required("Required"),
 });
-function contact() {
+function contact({ user }) {
   const [email, setEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   return (
-    <div>
-      <Header isActive="Contact" />
-      <div className="mt-20 lg:max-w-6xl mx-auto md:ml-40">
+    <div className="bg-white dark:bg-black  h-full">
+      <Header isActive="Contact" user={user} />
+      <div className="mt-20 lg:max-w-6xl mx-auto md:ml-40 dark:text-white">
         <div className="md:ml-20 mx-auto">
           <h2 className="font-semiBold text-5xl mb-5 ">Contact Me</h2>
           <p className="text-2xl break-all ">
@@ -37,16 +39,39 @@ function contact() {
           </p>
 
           <Formik
-            validationSchema={ContactSchema}
             initialValues={{
-              name: " ",
-              email: " ",
-              subject: " ",
-              message: " ",
+              name: "",
+              email: "",
+              subject: "",
+              message: "",
             }}
+            validationSchema={ContactSchema}
             onSubmit={async (values) => {
               // send to Api
-              console.log("values", values);
+              try {
+                /*                  const contactData = {
+                  'youremail': values.email,
+                  'yourname': values.name,
+                  'subject': values.subject,
+                  'message': values.message,
+                }; */
+                const contactData = new FormData();
+                contactData.append("your-email", values.email);
+                contactData.append("your-name", values.name);
+                contactData.append("your-subject", values.subject);
+                contactData.append("your-message", values.message);
+
+                const res = await axios.post(
+                  "http://dash.djaalabahmed.com/wp-json/contact-form-7/v1/contact-forms/50/feedback",
+                  contactData
+                );
+                if (res.status === "200") {
+                  alert("it is wrking ");
+                }
+                console.log("values", res);
+              } catch (error) {
+                console.log("values", error.message);
+              }
             }}
           >
             {({ isSubmitting }) => (
@@ -69,7 +94,7 @@ function contact() {
                 <InputOrTextArea
                   name="subject"
                   label="subject"
-                  type="subject"
+                  type="text"
                   required
                 />
                 <InputOrTextArea
@@ -87,9 +112,11 @@ function contact() {
                   text-white rounded-lg 
                   ml-4
                   mt-4
+                  mb-4
                   "
+                  disabled={isSubmitting}
                 >
-                  Send Message
+                  {isSubmitting ? "Sending  Message..." : "Send Message"}
                 </button>
               </Form>
             )}
@@ -101,3 +128,12 @@ function contact() {
 }
 
 export default contact;
+
+export async function getServerSideProps(context) {
+  const user = await getUserData();
+  return {
+    props: {
+      user,
+    },
+  };
+}

@@ -1,31 +1,25 @@
 import Header from "../components/Header";
 import Head from "next/head";
-export default function Home() {
-  return (
-    <div className="bg-white md:max-w-6xl    md:mt-20  md:ml-30">
-      <Head>
-        <title>Ahmed Djaalab</title>
-      </Head>
+import { getUserData } from "../utils/getUserData";
+export default function Home({ user }) {
+  // set the default user data
 
+  return (
+    <div className="bg-white dark:bg-black h-screen ">
+      <Head>
+        <title>{user.name}</title>
+      </Head>
       {/* header */}
-      <Header />
+      <Header user={user} />
 
       <div className="max-w-[550px] mx-auto mt-20">
         <p className="text-2xl">
-          <span className="text-5xl font-bold">Hi, I'm Ahmed.</span>
+          <span className="text-5xl font-bold dark:text-white">
+            Hi, I'm {user.name?.split(" ")[0]}.
+          </span>
           <br />
           <br />
-          I'm a web developer from in Southampton, UK. I’m currently the lead
-          developer at a local agency, Fhoke. In my spare time I like working
-          with a few select clients and building my own products
-          <br />
-          <br />
-          My most recent product is Calendi. It’s a simple yet powerful
-          editorial calendar for WordPress.
-          <br />
-          <br />
-          You can usually find me on Twitter, but I'm occasionally on Product
-          Hunt and Reddit as well.
+          {user.howAmI}
           <br />
           <br />
         </p>
@@ -34,4 +28,13 @@ export default function Home() {
       {/* main page  */}
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  const user = await getUserData();
+  return {
+    props: {
+      user,
+    },
+  };
 }

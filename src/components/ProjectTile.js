@@ -5,7 +5,7 @@ function ProjectTile({ id, mainImage, title, description, stack }) {
   return (
     <div
       key={id}
-      className="flex flex-col lg:flex-row mb-10
+      className="flex flex-col lg:flex-row pb-10
              items-center space-x-5"
     >
       <img
@@ -16,8 +16,8 @@ function ProjectTile({ id, mainImage, title, description, stack }) {
       />
 
       <div className="flex flex-col  mt-10 lg:mt-0">
-        <p className="text-5xl font-semiBold pb-10">{title}</p>
-        <p className="text-2xl ">{description}</p>
+        <p className="text-5xl font-semiBold pb-10 dark:text-white">{title}</p>
+        <p className="text-2xl dark:text-white ">{description}</p>
         {/* stack */}
 
         {<StackTile stack={stack} />}
