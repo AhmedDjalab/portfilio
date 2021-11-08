@@ -12,11 +12,11 @@ function ProjectTitle2({ id, mainImage, title, description, stack, link }) {
           title={title}
         ></img>
       </NextLink>
-      <div className=" bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+      <div className=" bg-white dark:bg-black rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
         <div className="mb-8">
           <p className="text-sm text-gray-600 flex items-center"></p>
-          <div className="text-gray-900 font-bold text-3xl mb-4">{title}</div>
-          <p className="text-gray-700 text-xl">{description}</p>
+          <div className="text-gray-900 font-bold text-3xl mb-4 dark:text-white">{title}</div>
+          <p className="text-gray-700 text-xl dark:text-white ">{description}</p>
           {<StackTile stack={stack} />}
         </div>
         {/* <div className="flex items-center">
