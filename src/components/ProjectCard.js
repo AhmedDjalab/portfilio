@@ -12,7 +12,7 @@ function ProjectCard({ id, mainImage, title, description, stack, link }) {
       <NextLink href={link}>
         <Image
           src={mainImage}
-          objectFit="cover"
+          objectFit="contain"
           width={350}
           height={200}
           className="cursor-pointer"
@@ -32,7 +32,7 @@ function ProjectCard({ id, mainImage, title, description, stack, link }) {
         </p>
       </NextLink>
       <div>
-        <div className=" flex  mt-5 text-white flex-wrap h-[100px] max-h-[200px] justify-center ">
+        <div className=" flex  mt-5 text-white flex-wrap h-[100px] max-h-[200px] ml-2 ">
           {stack.map((st) => (
             <p className=" bg-purple-500 rounded-xl px-2 py-2 h-10 mr-2 ">
               {st.name}

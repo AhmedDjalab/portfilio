@@ -31,10 +31,20 @@ export default function Home({ user }) {
 }
 
 export async function getServerSideProps(context) {
-  const user = await getUserData();
-  return {
-    props: {
-      user,
-    },
-  };
+  try {
+    const user = await getUserData();
+    return {
+      props: {
+        user,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/500",
+      },
+      props: {},
+    };
+  }
 }

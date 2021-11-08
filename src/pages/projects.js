@@ -63,52 +63,58 @@ function projects({ projects, user, stack }) {
             transition={{ duration: 0.5 }}
           >
             <div className="h-full flex flex-wrap  ">
-              {projects
-                .filter((project) => {
-                  if (stackIds.length > 0) {
-                    console.log(
-                      "this is stakc data ",
-                      project.stackIds.includes(stackIds),
-                      project.stackIds.some((r) => stackIds.includes(r))
-                    );
-                    return project.stackIds.some((r) => stackIds.includes(r));
-                  } else {
-                    return true;
-                  }
-                })
-                .map(
-                  ({
-                    id,
-                    title,
-                    description,
-                    mainImage,
-                    brief,
-                    result,
-                    link,
-                    stack,
-                  }) =>
-                    inProp ? (
-                      <ProjectTile
-                        key={id}
-                        id={id}
-                        mainImage={mainImage}
-                        title={title}
-                        description={description}
-                        stack={stack}
-                        link={link}
-                      />
-                    ) : (
-                      <ProjectCard
-                        key={id}
-                        id={id}
-                        mainImage={mainImage}
-                        title={title}
-                        description={description}
-                        stack={stack}
-                        link={link}
-                      />
-                    )
-                )}
+              {projects ? (
+                projects
+                  .filter((project) => {
+                    if (stackIds.length > 0) {
+                      console.log(
+                        "this is stakc data ",
+                        project.stackIds.includes(stackIds),
+                        project.stackIds.some((r) => stackIds.includes(r))
+                      );
+                      return project.stackIds.some((r) => stackIds.includes(r));
+                    } else {
+                      return true;
+                    }
+                  })
+                  .map(
+                    ({
+                      id,
+                      title,
+                      description,
+                      mainImage,
+                      brief,
+                      result,
+                      link,
+                      stack,
+                    }) =>
+                      inProp ? (
+                        <ProjectTile
+                          key={id}
+                          id={id}
+                          mainImage={mainImage}
+                          title={title}
+                          description={description}
+                          stack={stack}
+                          link={link}
+                        />
+                      ) : (
+                        <ProjectCard
+                          key={id}
+                          id={id}
+                          mainImage={mainImage}
+                          title={title}
+                          description={description}
+                          stack={stack}
+                          link={link}
+                        />
+                      )
+                  )
+              ) : (
+                <h2 className="text-black">
+                  Error when Loading Data Please Try Again{" "}
+                </h2>
+              )}
             </div>
           </motion.div>
         }
@@ -120,38 +126,52 @@ function projects({ projects, user, stack }) {
 export default projects;
 
 export async function getServerSideProps(context) {
-  const { data } = await axios.get(process.env.HOSTAPI + "/projects/?_embed=1");
-  const user = await getUserData();
-  const { data: data2 } = await axios.get(process.env.HOSTAPI + "/stack/");
-  const projects = data.map((product) => ({
-    id: product.id,
-    title: product.title.rendered,
-    mainImage: product.acf.mainImage,
-    description: product.acf.description,
-    // stack: [
-    //   { id: 1, name: "ASP NET CORE" },
-    //   { id: 2, name: "flutter" },
-    //   { id: 3, name: "react" },
-    //   { id: 4, name: "react Native" },
-    // ],
-    stack: product.acf.stack,
-    stackIds: product.stack,
-    brief: product.acf.brief,
-    result: product.acf.result,
-    link: product.link,
-  }));
-  console.log("ths is projects :: ", projects);
+  const { params, req, res } = context;
 
-  const stack = data2.map((s) => ({
-    id: s.id,
-    name: s.name,
-    checked: false,
-  }));
-  return {
-    props: {
-      projects,
-      user,
-      stack,
-    },
-  };
+  try {
+    const { data } = await axios.get(
+      process.env.HOSTAPI + "/projects/?_embed=1"
+    );
+    const user = await getUserData();
+    const projects = data.map((project) => ({
+      id: project.id,
+      title: project.title.rendered,
+      mainImage: project.acf.mainImage,
+      description: project.acf.description,
+      // stack: [
+      //   { id: 1, name: "ASP NET CORE" },
+      //   { id: 2, name: "flutter" },
+      //   { id: 3, name: "react" },
+      //   { id: 4, name: "react Native" },
+      // ],
+      stack: project.acf.stack,
+      stackIds: project.stack,
+      brief: project.acf.brief,
+      result: project.acf.result,
+      link: project.acf.projecturl,
+    }));
+    console.log("ths is projects :: ", projects);
+    const { data: data2 } = await axios.get(process.env.HOSTAPI + "/stack/");
+
+    const stack = data2.map((s) => ({
+      id: s.id,
+      name: s.name,
+      checked: false,
+    }));
+    return {
+      props: {
+        projects,
+        user,
+        stack,
+      },
+    };
+  } catch (e) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/500",
+      },
+      props: {},
+    };
+  }
 }

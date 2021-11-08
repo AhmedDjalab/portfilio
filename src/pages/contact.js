@@ -62,7 +62,7 @@ function contact({ user }) {
                 contactData.append("your-message", values.message);
 
                 const res = await axios.post(
-                  "http://dash.djaalabahmed.com/wp-json/contact-form-7/v1/contact-forms/50/feedback",
+                  "https://dash.djaalabahmed.com/wp-json/contact-form-7/v1/contact-forms/50/feedback",
                   contactData
                 );
                 if (res.status === "200") {
@@ -130,10 +130,20 @@ function contact({ user }) {
 export default contact;
 
 export async function getServerSideProps(context) {
-  const user = await getUserData();
-  return {
-    props: {
-      user,
-    },
-  };
+  try {
+    const user = await getUserData();
+    return {
+      props: {
+        user,
+      },
+    };
+  } catch (error) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/500",
+      },
+      props: {},
+    };
+  }
 }
