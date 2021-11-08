@@ -5,6 +5,7 @@ import { useState } from "react";
 import Header from "../components/Header";
 import ProjectCard from "../components/ProjectCard";
 import ProjectTile from "../components/ProjectTile";
+import ProjectTitle2 from "../components/ProjectTitle2";
 import StackTile from "../components/StackTile";
 import { porjectsData } from "../consts/data";
 import { useStackFilterContext } from "../context/stackFilterContext";
@@ -76,7 +77,7 @@ function worker({ user, workers, stack }) {
                       stack,
                     }) =>
                       inProp ? (
-                        <ProjectTile
+                        <ProjectTitle2
                           key={id}
                           id={id}
                           mainImage={mainImage}

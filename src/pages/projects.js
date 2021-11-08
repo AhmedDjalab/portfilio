@@ -7,6 +7,7 @@ import { CSSTransition } from "react-transition-group";
 import Header from "../components/Header";
 import ProjectCard from "../components/ProjectCard";
 import ProjectTile from "../components/ProjectTile";
+import ProjectTitle2 from "../components/ProjectTitle2";
 import StackTile from "../components/StackTile";
 import { porjectsData, StackData } from "../consts/data";
 import { useStackFilterContext } from "../context/stackFilterContext";
@@ -16,7 +17,6 @@ function projects({ projects, user, stack }) {
   const { stackIds, setStackIds } = useStackFilterContext();
   const [inProp, setInProp] = useState(false);
 
-  console.log("this is cntext ", stackIds);
   return (
     <div className="bg-white dark:bg-black dark:duration-300 dark:transition  h-full">
       <Header isActive="Projects" user={user} />
@@ -89,7 +89,7 @@ function projects({ projects, user, stack }) {
                       stack,
                     }) =>
                       inProp ? (
-                        <ProjectTile
+                        <ProjectTitle2
                           key={id}
                           id={id}
                           mainImage={mainImage}
