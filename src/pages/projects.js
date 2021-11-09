@@ -26,8 +26,9 @@ function projects({ projects, user, stack }) {
           <h1 className="text-5xl font-bold dark:text-white">Projects</h1>
           <br />
           <p className="text-2xl dark:text-white">
-            In my spare time I like to tinker on side projects , Learn more .
-            These are some of the results.
+            In my spare time, I like to tinker on side projects, learn more, try
+            to clone some of the famous sites on the internet, These are some of
+            the results.
           </p>
 
           {/* filter by stack  */}
