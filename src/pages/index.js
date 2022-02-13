@@ -5,7 +5,7 @@ export default function Home({ user }) {
   // set the default user data
 
   return (
-    <div className="bg-white dark:bg-black h-screen ">
+    <div className="bg-white dark:bg-black  ">
       <Head>
         <title>{user.name}</title>
       </Head>

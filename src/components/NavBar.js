@@ -1,5 +1,6 @@
 import { useRouter } from "next/dist/client/router";
 import { useState } from "react";
+import NextLink from "next/link";
 
 const NavButtons = [
   {
@@ -18,6 +19,10 @@ const NavButtons = [
     title: "Contact",
     path: "/contact",
   },
+  {
+    title: "Download Resume",
+    path: "https://dash.djaalabahmed.com/wp-content/uploads/2022/02/AhmedDjaalab2021CV.pdf",
+  },
 ];
 
 function NavBar({ isActive = false }) {
@@ -25,8 +30,22 @@ function NavBar({ isActive = false }) {
   return (
     <div className="md:flex  md:mt-6">
       {NavButtons.map(({ title, path }) => (
-        <h2
+      title === "Download Resume" ? 
+       <a href={path} target="_blank" download className="
+       text-gray-600 dark:text-white
+       mr-10 mt-10 uppercase 
+       md:mt-0 hover:text-purple-600
+       transition duration-300
+        focus:text-blue-600 active:text-blue-600
+        font-bold 
+          text-lg
+       
+       ">Download Resume</a>
+      :
+      
+      <h2
           onClick={() => {
+           
             router.push(path);
           }}
           key={`${title + path}`}
@@ -45,6 +64,7 @@ function NavBar({ isActive = false }) {
           {title}
         </h2>
       ))}
+     
     </div>
   );
 }
