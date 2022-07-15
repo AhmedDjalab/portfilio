@@ -68,11 +68,6 @@ function projects({ projects, user, stack }) {
                 projects
                   .filter((project) => {
                     if (stackIds.length > 0) {
-                      console.log(
-                        "this is stakc data ",
-                        project.stackIds.includes(stackIds),
-                        project.stackIds.some((r) => stackIds.includes(r))
-                      );
                       return project.stackIds.some((r) => stackIds.includes(r));
                     } else {
                       return true;
@@ -151,7 +146,7 @@ export async function getServerSideProps(context) {
       result: project.acf.result,
       link: project.acf.projecturl,
     }));
-    console.log("ths is projects :: ", projects);
+
     const { data: data2 } = await axios.get(process.env.HOSTAPI + "/stack/");
 
     const stack = data2.map((s) => ({

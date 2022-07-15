@@ -68,9 +68,8 @@ function contact({ user }) {
                 if (res.status === "200") {
                   alert("it is wrking ");
                 }
-                console.log("values", res);
               } catch (error) {
-                console.log("values", error.message);
+                console.log("Network Error : ", error.message);
               }
             }}
           >

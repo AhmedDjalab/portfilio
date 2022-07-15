@@ -55,11 +55,6 @@ function worker({ user, workers, stack }) {
                 workers
                   .filter((worker) => {
                     if (stackIds.length > 0) {
-                      console.log(
-                        "this is stakc data ",
-                        worker.stackIds.includes(stackIds),
-                        worker.stackIds.some((r) => stackIds.includes(r))
-                      );
                       return worker.stackIds.some((r) => stackIds.includes(r));
                     } else {
                       return true;
