@@ -1,11 +1,17 @@
 import Header from "../components/Header";
 import Head from "next/head";
 import { getUserData } from "../utils/getUserData";
+import ReactHtmlParser, {
+  processNodes,
+  convertNodeToElement,
+  htmlparser2,
+} from "react-html-parser";
+
 export default function Home({ user }) {
   // set the default user data
 
   return (
-    <div className="bg-white dark:bg-black  ">
+    <div className="bg-white dark:bg-black ">
       <Head>
         <title>{user.name}</title>
       </Head>
@@ -19,7 +25,8 @@ export default function Home({ user }) {
           </span>
           <br />
           <br />
-          {user.howAmI}
+
+          {ReactHtmlParser(user.howAmI)}
           <br />
           <br />
         </p>
