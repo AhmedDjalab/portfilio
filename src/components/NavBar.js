@@ -28,28 +28,25 @@ const NavButtons = [
 function NavBar({ isActive = false }) {
   const router = useRouter();
   return (
-    <div className="md:flex  md:mt-6">
-      {NavButtons.map(({ title, path }) => (
-      title === "Download Resume" ? 
-       <a href={path} target="_blank" download className="
-       text-gray-600 dark:text-white
-       mr-10 mt-10 uppercase 
-       md:mt-0 hover:text-purple-600
-       transition duration-300
-        focus:text-blue-600 active:text-blue-600
-        font-bold 
-          text-lg
-       
-       ">Download Resume</a>
-      :
-      
-      <h2
-          onClick={() => {
-           
-            router.push(path);
-          }}
-          key={`${title + path}`}
-          className={`font-bold 
+    <div className="md:flex md:mt-6">
+      {NavButtons.map(({ title, path }) =>
+        title === "Download Resume" ? (
+          <a
+            href={path}
+            key={`${title + path}`}
+            target="_blank"
+            download
+            className="mt-10 mr-10 text-lg font-bold text-gray-600 uppercase transition duration-300  dark:text-white md:mt-0 hover:text-purple-600 focus:text-blue-600 active:text-blue-600"
+          >
+            Download Resume
+          </a>
+        ) : (
+          <h2
+            onClick={() => {
+              router.push(path);
+            }}
+            key={`${title + path}`}
+            className={`font-bold 
           text-lg  ${
             isActive && isActive === title
               ? "text-purple-500"
@@ -60,11 +57,11 @@ function NavBar({ isActive = false }) {
            transition duration-300
             focus:text-blue-600 active:text-blue-600
            `}
-        >
-          {title}
-        </h2>
-      ))}
-     
+          >
+            {title}
+          </h2>
+        )
+      )}
     </div>
   );
 }

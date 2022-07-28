@@ -2,7 +2,7 @@ import axios from "axios";
 
 export async function getUserData() {
   const { data } = await axios.get(process.env.HOSTAPI + "/users/1");
-
+  console.log("this is data ", data);
   const infos = {
     id: data.id,
     name: data.name,

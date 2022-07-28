@@ -46,6 +46,8 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (error) {
+    console.log("this is erroir ", error);
+
     return {
       redirect: {
         permanent: false,

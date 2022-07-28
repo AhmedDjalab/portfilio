@@ -12,42 +12,26 @@ function Header({ user, isActive = null }) {
 
   const dark = theme === "dark" ? true : false;
   return (
-    <div className="md:flex justify-between">
+    <div className="justify-between md:flex">
       {/* left  */}
       {/* md:mt-20  md:ml-40  mx-2 my-2 */}
-      <div className="md:flex  md:mt-20 justify-between md:ml-40  mx-2 my-2">
+      <div className="justify-between mx-2 my-2 md:flex md:mt-20 md:ml-40">
         <NextLink href="/">
           <img
-            className="relative w-32 h-32 rounded-full cursor-pointer"
+            className="relative w-32 h-32 border-4 border-purple-500 rounded-full cursor-pointer border-opacity-60 dark:border-purple-500 "
             src={user.avatar}
           />
         </NextLink>
 
-        <div className="flex flex-col md:mx-5 md:my-3 justify-between ">
+        <div className="flex flex-col justify-between md:mx-5 md:my-3 ">
           {/* right the name  */}
 
           <NextLink href="/">
             <div className="cursor-pointer">
-              <h2
-                className="font-bold
-     text-xl uppercase
-      dark:text-white
-       mt-4
-       md:mt-0
-       "
-              >
+              <h2 className="mt-4 text-xl font-bold uppercase dark:text-white md:mt-0 ">
                 {user.name}
               </h2>
-              <div
-                className="h-2
-     w-10
-      bg-purple-500
-       rounded-full
-        mt-5
-        md:mt-2
-        
-        "
-              />
+              <div className="w-10 h-2 mt-5 bg-purple-500 rounded-full md:mt-2 " />
             </div>
           </NextLink>
           {/* the navBar */}

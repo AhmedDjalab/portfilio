@@ -18,10 +18,10 @@ function projects({ projects, user, stack }) {
   const [inProp, setInProp] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-black dark:duration-300 dark:transition  h-full">
+    <div className="h-full bg-white dark:bg-black dark:duration-300 dark:transition">
       <Header isActive="Projects" user={user} />
 
-      <div className="mt-20 lg:max-w-6xl mx-auto md:ml-40 ">
+      <div className="mx-auto mt-20 md:ml-40 ">
         <div className="mx-5 my-5">
           <h1 className="text-5xl font-bold dark:text-white">Projects</h1>
           <br />
@@ -35,7 +35,7 @@ function projects({ projects, user, stack }) {
 
           <div>
             <div className="flex content-end mt-10">
-              <h2 className=" flex-grow text-3xl font-bold  dark:text-white">
+              <h2 className="flex-grow text-3xl font-bold dark:text-white">
                 Technologies
               </h2>
 
@@ -63,7 +63,7 @@ function projects({ projects, user, stack }) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="h-full flex flex-wrap  ">
+            <div className="flex flex-wrap h-full ">
               {projects ? (
                 projects
                   .filter((project) => {

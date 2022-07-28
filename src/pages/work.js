@@ -16,19 +16,19 @@ function worker({ user, workers, stack }) {
   const [inProp, setInProp] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-black  h-full">
+    <div className="bg-white dark:bg-black">
       <Header isActive="Work" user={user} />
 
-      <div className=" mt-10   lg:max-w-6xl mx-auto md:ml-40 h-screen">
-        <div className="mb-10">
+      <div className="pr-5 mx-auto mt-10 md:ml-40">
+        <div className="mb-10 ">
           <div className="flex content-end mt-2">
-            <h2 className=" flex-grow text-3xl font-bold  dark:text-white">
+            <h2 className="flex-grow text-3xl font-bold dark:text-white">
               Technologies
             </h2>
 
             {inProp ? (
               <ArrowsExpandIcon
-                className="w-5 h-5"
+                className="w-5 h-5 "
                 onClick={() => setInProp(!inProp)}
               />
             ) : (
@@ -50,7 +50,7 @@ function worker({ user, workers, stack }) {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="h-full flex flex-wrap  ">
+            <div className="flex flex-wrap h-full ">
               {workers ? (
                 workers
                   .filter((worker) => {
