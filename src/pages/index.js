@@ -11,7 +11,7 @@ export default function Home({ user }) {
   // set the default user data
 
   return (
-    <div className="bg-white dark:bg-black ">
+    <div className="relative bg-white dark:bg-black">
       <Head>
         <title>{user.name}</title>
       </Head>

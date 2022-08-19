@@ -1,13 +1,11 @@
-
-export const mainProfile= {
-  name : "ahmed Djalab" , 
-  avatar : "" , 
-  title:"software dev " , 
-  howAmI : " "
-}
-
-
-
+export const mainProfile = {
+  name: "ahmed Djalab",
+  avatar: "",
+  title: "software dev ",
+  howAmI: " ",
+  github: "https://github.com/ahmeddjalab",
+  linkdein: "https://www.linkedin.com/in/ahmed-djaalab",
+};
 
 export const porjectsData = [
   {
@@ -93,13 +91,11 @@ export const StackData = [
   },
 ];
 
-
-///plus the contact us for witch i will send you the post request with body 
+///plus the contact us for witch i will send you the post request with body
 // of :
 //    body = {
-//   email : "" , 
-//   name:"" , 
+//   email : "" ,
+//   name:"" ,
 //   subject : ""
 //   message : ""
 // }
-

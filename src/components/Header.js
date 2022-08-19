@@ -7,33 +7,48 @@ import { LightBulbIcon } from "@heroicons/react/outline";
 import { useLightDarkThemeContext } from "../context/lightDarkThemeContext";
 import { useTheme } from "next-themes";
 import NextLink from "next/link";
+import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { mainProfile } from "../consts/data";
+
 function Header({ user, isActive = null }) {
   const { theme, setTheme } = useTheme();
+  let { github, linkedin } = user;
+
+  github = github || mainProfile.github;
+  linkedin = linkedin || mainProfile.linkdein;
 
   const dark = theme === "dark" ? true : false;
   return (
-    <div className="justify-between md:flex">
+    <div className="relative justify-between md:flex ">
       {/* left  */}
       {/* md:mt-20  md:ml-40  mx-2 my-2 */}
       <div className="justify-between mx-2 my-2 md:flex md:mt-20 md:ml-40">
         <NextLink href="/">
           <img
-            className="relative w-32 h-32 border-4 border-purple-500 rounded-full cursor-pointer border-opacity-60 dark:border-purple-500 "
+            className="relative z-10 w-32 h-32 border-4 border-purple-500 rounded-full cursor-pointer border-opacity-60 dark:border-purple-500 "
             src={user.avatar}
-          />
+          ></img>
         </NextLink>
 
         <div className="flex flex-col justify-between md:mx-5 md:my-3 ">
           {/* right the name  */}
 
-          <NextLink href="/">
-            <div className="cursor-pointer">
-              <h2 className="mt-4 text-xl font-bold uppercase dark:text-white md:mt-0 ">
+          <div className="flex items-baseline gap-3 mt-4 md:mt-0 ">
+            <NextLink href="/">
+              <h2 className="text-2xl font-bold uppercase cursor-pointer dark:text-white ">
                 {user.name}
               </h2>
-              <div className="w-10 h-2 mt-5 bg-purple-500 rounded-full md:mt-2 " />
-            </div>
-          </NextLink>
+            </NextLink>
+            <a href={github}>
+              <FaGithub className="w-4 h-4 ml-5 text-purple-500 cursor-pointer" />
+            </a>
+            <a href={linkedin}>
+              <FaLinkedinIn className="w-4 h-4 text-purple-500 cursor-pointer " />
+            </a>
+          </div>
+
+          <div className="w-10 h-2 mt-5 bg-purple-500 rounded-full md:mt-2 " />
+
           {/* the navBar */}
           <NavBar isActive={isActive} />
         </div>
