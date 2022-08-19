@@ -7,13 +7,9 @@ function StackTile({ stack, filter = false }) {
   const { stackIds, setStackIds } = useStackFilterContext();
   if (filter) {
     return (
-      <div className="lg:flex lg:space-x-2 lg:mt-10">
+      <div className=" lg:flex lg:space-x-2 lg:mt-10">
         {stack.map((st, index) => (
-          <div
-            key={index}
-            className="mt-10 lg:mt-2 flex 
-                   "
-          >
+          <div key={index} className="flex mt-10 lg:mt-2 ">
             <button
               onClick={() => {
                 const stArray = [...checked];
@@ -54,12 +50,8 @@ function StackTile({ stack, filter = false }) {
   return (
     <div className="lg:flex lg:space-x-2 lg:mt-10">
       {stack.map((st, index) => (
-        <div
-          key={index}
-          className="mt-10 lg:mt-2 flex
-                   "
-        >
-          <button className="bg-purple-500 uppercase  px-4 py-2 rounded-full text-white">
+        <div key={index} className="flex mt-10 lg:mt-2 ">
+          <button className="px-4 py-2 text-white uppercase bg-purple-500 rounded-full">
             {st.name}
           </button>
         </div>

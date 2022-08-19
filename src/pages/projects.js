@@ -18,7 +18,7 @@ function projects({ projects, user, stack }) {
   const [inProp, setInProp] = useState(false);
 
   return (
-    <div className="h-full bg-white dark:bg-black dark:duration-300 dark:transition">
+    <div className="h-full p-4 bg-white md:p-2 dark:bg-black dark:duration-300 dark:transition">
       <Header isActive="Projects" user={user} />
 
       <div className="mx-auto mt-20 md:ml-40 ">

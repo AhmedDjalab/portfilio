@@ -16,7 +16,7 @@ function worker({ user, workers, stack }) {
   const [inProp, setInProp] = useState(false);
 
   return (
-    <div className="bg-white dark:bg-black">
+    <div className="bg-white dark:bg-black p-4 md:p-2 ">
       <Header isActive="Work" user={user} />
 
       <div className="pr-5 mx-auto mt-10 md:ml-40">

@@ -27,11 +27,11 @@ function contact({ user }) {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   return (
-    <div className="bg-white dark:bg-black  h-full">
+    <div className="h-full p-4 bg-white dark:bg-black md:p-2">
       <Header isActive="Contact" user={user} />
-      <div className="mt-20 lg:max-w-6xl mx-auto md:ml-40 dark:text-white">
-        <div className="md:ml-20 mx-auto">
-          <h2 className="font-semiBold text-5xl mb-5 ">Contact Me</h2>
+      <div className="mx-auto mt-20 lg:max-w-6xl md:ml-40 dark:text-white">
+        <div className="mx-auto md:ml-20">
+          <h2 className="mb-5 text-5xl font-semiBold ">Contact Me</h2>
           <p className="text-2xl break-all ">
             If you’d like to chat about a project then please fill in the form
             <br />
@@ -74,7 +74,7 @@ function contact({ user }) {
             }}
           >
             {({ isSubmitting }) => (
-              <Form className="w-full mt-20  max-w-3xl  flex flex-wrap -mx-3 mb-6">
+              <Form className="flex flex-wrap w-full max-w-3xl mt-20 mb-6 -mx-3">
                 <InputOrTextArea
                   layout="half"
                   name="name"
@@ -106,13 +106,7 @@ function contact({ user }) {
 
                 <button
                   type="submit"
-                  className="py-2 px-2 bg-purple-500 text-md 
-                  uppercase font-bold 
-                  text-white rounded-lg 
-                  ml-4
-                  mt-4
-                  mb-4
-                  "
+                  className="px-2 py-2 mt-4 mb-4 ml-4 font-bold text-white uppercase bg-purple-500 rounded-lg text-md "
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending  Message..." : "Send Message"}

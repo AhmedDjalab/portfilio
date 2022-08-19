@@ -8,12 +8,14 @@ import { useLightDarkThemeContext } from "../context/lightDarkThemeContext";
 import { useTheme } from "next-themes";
 import NextLink from "next/link";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import { HiDocumentDownload } from "react-icons/hi";
 import { mainProfile } from "../consts/data";
 
 function Header({ user, isActive = null }) {
   const { theme, setTheme } = useTheme();
   let { github, linkedin } = user;
-
+  let pdfLink =
+    "https://dash.djaalabahmed.com/wp-content/uploads/2022/08/AhmedDjalabResume.docx";
   github = github || mainProfile.github;
   linkedin = linkedin || mainProfile.linkdein;
 
@@ -44,6 +46,9 @@ function Header({ user, isActive = null }) {
             </a>
             <a href={linkedin}>
               <FaLinkedinIn className="w-4 h-4 text-purple-500 cursor-pointer " />
+            </a>
+            <a href={pdfLink} download>
+              <HiDocumentDownload className="w-5 h-5 text-purple-500 cursor-pointer " />
             </a>
           </div>
 

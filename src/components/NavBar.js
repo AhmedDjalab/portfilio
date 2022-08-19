@@ -19,16 +19,16 @@ const NavButtons = [
     title: "Contact",
     path: "/contact",
   },
-  {
-    title: "Download Resume",
-    path: "https://dash.djaalabahmed.com/wp-content/uploads/2022/02/AhmedDjaalab2021CV.pdf",
-  },
+  // {
+  //   title: "Download Resume",
+  //   path: "https://dash.djaalabahmed.com/wp-content/uploads/2022/02/AhmedDjaalab2021CV.pdf",
+  // },
 ];
 
 function NavBar({ isActive = false }) {
   const router = useRouter();
   return (
-    <div className="md:flex md:mt-6">
+    <div className=" md:flex md:mt-6">
       {NavButtons.map(({ title, path }) =>
         title === "Download Resume" ? (
           <a
@@ -36,7 +36,7 @@ function NavBar({ isActive = false }) {
             key={`${title + path}`}
             target="_blank"
             download
-            className="mt-10 mr-10 text-lg font-bold text-gray-600 uppercase transition duration-300  dark:text-white md:mt-0 hover:text-purple-600 focus:text-blue-600 active:text-blue-600"
+            className="mt-10 mr-10 text-lg font-bold text-gray-600 uppercase transition duration-300 dark:text-white md:mt-0 hover:text-purple-600 focus:text-blue-600 active:text-blue-600"
           >
             Download Resume
           </a>
