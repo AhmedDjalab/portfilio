@@ -7,7 +7,7 @@ function StackTile({ stack, filter = false }) {
   const { stackIds, setStackIds } = useStackFilterContext();
   if (filter) {
     return (
-      <div className=" lg:flex lg:space-x-2 lg:mt-10">
+      <div className=" lg:flex lg:space-x-2 lg:mt-10 flex  flex-wrap gap-2">
         {stack.map((st, index) => (
           <div key={index} className="flex mt-10 lg:mt-2 ">
             <button

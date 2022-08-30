@@ -3,7 +3,7 @@ import { getUserData } from "../utils/getUserData";
 
 function article({ user }) {
   return (
-    <div className="h-screen bg-white dark:bg-black">
+    <div className="h-screen p-4 bg-white dark:bg-black">
       <Header isActive="Articles" user={user} />
 
       <div className="mx-auto mt-20 lg:max-w-6xl md:ml-40">

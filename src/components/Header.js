@@ -9,6 +9,7 @@ import { useTheme } from "next-themes";
 import NextLink from "next/link";
 import { FaGithub, FaLinkedinIn } from "react-icons/fa";
 import { HiDocumentDownload } from "react-icons/hi";
+import { ImProfile } from "react-icons/im";
 import { mainProfile } from "../consts/data";
 
 function Header({ user, isActive = null }) {
@@ -21,9 +22,26 @@ function Header({ user, isActive = null }) {
 
   const dark = theme === "dark" ? true : false;
   return (
-    <div className="relative justify-between md:flex ">
+    <div className="relative justify-between md:flex flex-row-reverse mt-10 md:mt-0">
       {/* left  */}
-      {/* md:mt-20  md:ml-40  mx-2 my-2 */}
+      {/* md:mt-20  md:ml-40  mx-2 my-2 */}{" "}
+      <LightBulbIcon
+        className={`md:mt-20 md:mr-20 h-10 right-0 absolute md:relative 
+           ${
+             !dark
+               ? "text-yellow-500 hover:text-black transition delay-200 ease-out"
+               : "text-white hover:text-yellow-500 transition delay-200 ease-out"
+           }
+
+        
+        `}
+        onClick={() => {
+          if (theme === "light") setTheme("dark");
+          else setTheme("light");
+        }}
+      >
+        Ahmed
+      </LightBulbIcon>
       <div className="justify-between mx-2 my-2 md:flex md:mt-20 md:ml-40">
         <NextLink href="/">
           <img
@@ -48,33 +66,21 @@ function Header({ user, isActive = null }) {
               <FaLinkedinIn className="w-4 h-4 text-purple-500 cursor-pointer " />
             </a>
             <a href={pdfLink} download>
-              <HiDocumentDownload className="w-5 h-5 text-purple-500 cursor-pointer " />
+              <ImProfile className="w-5 h-5 text-purple-500 cursor-pointer " />
             </a>
           </div>
 
           <div className="w-10 h-2 mt-5 bg-purple-500 rounded-full md:mt-2 " />
 
           {/* the navBar */}
-          <NavBar isActive={isActive} />
+          <NavBar
+            isActive={isActive}
+            github={github}
+            linkedin={linkedin}
+            pdfLink={pdfLink}
+          />
         </div>
       </div>
-      <LightBulbIcon
-        className={`mt-20 mr-20 h-10
-           ${
-             !dark
-               ? "text-yellow-500 hover:text-black transition delay-200 ease-out"
-               : "text-white hover:text-yellow-500 transition delay-200 ease-out"
-           }
-
-        
-        `}
-        onClick={() => {
-          if (theme === "light") setTheme("dark");
-          else setTheme("light");
-        }}
-      >
-        Ahmed
-      </LightBulbIcon>
     </div>
   );
 }
