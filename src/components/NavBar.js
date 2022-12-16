@@ -32,25 +32,25 @@ function NavBar({ github, linkedin, pdfLink, isActive = false }) {
   return (
     <nav className=" md:flex md:mt-6">
       {/** Mobile view  */}
-      <section className="MOBILE-MENU flex lg:hidden ">
+      <section className="flex MOBILE-MENU lg:hidden ">
         <div
-          className="HAMBURGER-ICON space-y-2 absolute left-0 -top-10"
+          className="absolute left-0 space-y-2 HAMBURGER-ICON -top-10"
           onClick={() => setIsNavOpen((prev) => !prev)} // toggle isNavOpen state on click
         >
-          <span className="block h-1 w-8 animate-pulse bg-purple-600"></span>
-          <span className="block h-1 w-8 animate-pulse bg-purple-600"></span>
-          <span className="block h-1 w-8 animate-pulse bg-purple-600"></span>
+          <span className="block w-8 h-1 bg-purple-600 animate-pulse"></span>
+          <span className="block w-8 h-1 bg-purple-600 animate-pulse"></span>
+          <span className="block w-8 h-1 bg-purple-600 animate-pulse"></span>
         </div>
 
         <div
           className={isNavOpen ? "showMenuNav dark:bg-black" : "hideMenuNav"}
         >
           <div
-            className="CROSS-ICON absolute top-0 right-0 px-8 py-8"
+            className="absolute top-0 right-0 px-8 py-8 CROSS-ICON"
             onClick={() => setIsNavOpen(false)} // change isNavOpen state to false to close the menu
           >
             <svg
-              className="h-8 w-8 text-purple-600"
+              className="w-8 h-8 text-purple-600"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -64,15 +64,18 @@ function NavBar({ github, linkedin, pdfLink, isActive = false }) {
           </div>
           <ul className="MENU-LINK-MOBILE-OPEN flex flex-col items-center justify-between min-h-[250px]  ">
             {NavButtons.map(({ title, path }) => (
-              <li className="border-b border-gray-400 my-8 uppercase hover:border-purple-600 hover:border-b-4">
+              <li
+                key={title + path}
+                className="my-8 uppercase border-b border-gray-400 hover:border-purple-600 hover:border-b-4"
+              >
                 <a href={path}>{title}</a>
               </li>
             ))}
 
-            <li className="border-b border-gray-400 my-8 uppercase hover:border-purple-600 hover:border-b-4">
+            <li className="my-8 uppercase border-b border-gray-400 hover:border-purple-600 hover:border-b-4">
               <a href={github}>Github</a>
             </li>
-            <li className="border-b border-gray-400 my-8 uppercase hover:border-purple-600 hover:border-b-4">
+            <li className="my-8 uppercase border-b border-gray-400 hover:border-purple-600 hover:border-b-4">
               <a href={linkedin}>Linkedin</a>
             </li>
           </ul>

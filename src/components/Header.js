@@ -15,14 +15,13 @@ import { mainProfile } from "../consts/data";
 function Header({ user, isActive = null }) {
   const { theme, setTheme } = useTheme();
   let { github, linkedin } = user;
-  let pdfLink =
-    process.env.PROTOCOL + process.env.HOSTAPI + "/wp-content/uploads/AhmedDjalabResume.docx";
+  let pdfLink = process.env.PDFLINK;
   github = github || mainProfile.github;
   linkedin = linkedin || mainProfile.linkdein;
 
   const dark = theme === "dark" ? true : false;
   return (
-    <div className="relative justify-between md:flex flex-row-reverse mt-10 md:mt-0">
+    <div className="relative flex-row-reverse justify-between mt-10 md:flex md:mt-0">
       {/* left  */}
       {/* md:mt-20  md:ml-40  mx-2 my-2 */}{" "}
       <LightBulbIcon
