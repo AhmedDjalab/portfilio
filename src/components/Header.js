@@ -16,7 +16,7 @@ function Header({ user, isActive = null }) {
   const { theme, setTheme } = useTheme();
   let { github, linkedin } = user;
   let pdfLink =
-    "https://dash.djaalabahmed.com/wp-content/uploads/2022/12/AhmedDjalabResume.docx";
+    process.env.PROTOCOL + process.env.HOSTAPI + "/wp-content/uploads/AhmedDjalabResume.docx";
   github = github || mainProfile.github;
   linkedin = linkedin || mainProfile.linkdein;
 
