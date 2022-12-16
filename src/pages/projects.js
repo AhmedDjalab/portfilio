@@ -126,7 +126,7 @@ export async function getServerSideProps(context) {
 
   try {
     const { data } = await axios.get(
-      process.env.HOSTAPI + "/projects/?_embed=1"
+      process.env.PROTOCOL + process.env.HOSTAPI + "/projects/?_embed=1"
     );
     const user = await getUserData();
     const projects = data.map((project) => ({
@@ -147,7 +147,7 @@ export async function getServerSideProps(context) {
       link: project.acf.projecturl,
     }));
 
-    const { data: data2 } = await axios.get(process.env.HOSTAPI + "/stack/");
+    const { data: data2 } = await axios.get(process.env.PROTOCOL + process.env.HOSTAPI + "/stack/");
 
     const stack = data2.map((s) => ({
       id: s.id,

@@ -62,7 +62,7 @@ function contact({ user }) {
                 contactData.append("your-message", values.message);
 
                 const res = await axios.post(
-                  "https://dash.djaalabahmed.com/wp-json/contact-form-7/v1/contact-forms/50/feedback",
+                  process.env.PROTOCOL + process.env.HOSTAPI + "/wp-json/contact-form-7/v1/contact-forms/50/feedback",
                   contactData
                 );
                 if (res.status === "200") {

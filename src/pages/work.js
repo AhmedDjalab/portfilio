@@ -109,7 +109,7 @@ function worker({ user, workers, stack }) {
 export default worker;
 export async function getServerSideProps(context) {
   try {
-    const { data } = await axios.get(process.env.HOSTAPI + "/work/?_embed=1");
+    const { data } = await axios.get(process.env.PROTOCOL + process.env.HOSTAPI + "/work/?_embed=1");
     const user = await getUserData();
     const workers = data.map((work) => ({
       id: work.id,
@@ -130,7 +130,7 @@ export async function getServerSideProps(context) {
       link: work.acf.workurl,
     }));
 
-    const { data: data2 } = await axios.get(process.env.HOSTAPI + "/stack/");
+    const { data: data2 } = await axios.get(process.env.PROTOCOL + process.env.HOSTAPI + "/stack/");
 
     const stack = data2.map((s) => ({
       id: s.id,

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export async function getUserData() {
-  const { data } = await axios.get(process.env.HOSTAPI + "/users/1");
+  const { data } = await axios.get(process.env.PROTOCOL + process.env.HOSTAPI + "/users/1");
 
   const infos = {
     id: data.id,
